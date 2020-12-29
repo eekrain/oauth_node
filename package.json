@@ -1,0 +1,24 @@
+{
+  "name": "oauth_node",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000o\u0000a\u0000u\u0000t\u0000h\u0000_\u0000n\u0000o\u0000d\u0000e\u0000\r\u0000 \u0000",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eekrain/oauth_node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eekrain/oauth_node/issues"
+  },
+  "homepage": "https://github.com/eekrain/oauth_node#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
