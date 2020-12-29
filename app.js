@@ -10,10 +10,13 @@ const app = express();
 // set view engine
 app.set("view engine", "ejs");
 
-// connect to mongodb
-mongoose.connect(process.env.mongodbURI, () => {
-  console.log("connected mongodb");
-});
+mongoose
+  .connect(process.env.mongodbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+  })
+  .catch((err) => console.log(err));
 
 // auth routes
 app.use("/auth", authRoutes);
