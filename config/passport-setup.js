@@ -4,6 +4,16 @@ require("dotenv").config();
 
 const User = require("../models/user-model");
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -22,6 +32,7 @@ passport.use(
         if (currentUser) {
           // user already registered
           console.log(`user is: ${currentUser}`);
+          done(null, currentUser);
         } else {
           // if not, create user in our db
 
@@ -33,6 +44,7 @@ passport.use(
             .save()
             .then((newUser) => {
               console.log(`new user : ${newUser}`);
+              done(null, newUser);
             });
         }
       });
