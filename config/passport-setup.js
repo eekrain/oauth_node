@@ -14,18 +14,28 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       // passport callback fn
-      console.log(profile);
-      console.log(`email : ${profile.emails[0].value}`);
-      console.log(`id : ${profile.id}`);
-      new User({
-        email: profile.emails[0].value,
-        googleId: profile.id,
-        name: profile.displayName,
-      })
-        .save()
-        .then((newUser) => {
-          console.log(`new user : ${newUser}`);
-        });
+      const email = profile.emails[0].value;
+      const googleId = profile.id;
+      const name = profile.displayName;
+      // check if user already exist in our db
+      User.findOne({ googleId: googleId }).then((currentUser) => {
+        if (currentUser) {
+          // user already registered
+          console.log(`user is: ${currentUser}`);
+        } else {
+          // if not, create user in our db
+
+          new User({
+            email: profile.emails[0].value,
+            googleId: profile.id,
+            name: profile.displayName,
+          })
+            .save()
+            .then((newUser) => {
+              console.log(`new user : ${newUser}`);
+            });
+        }
+      });
     }
   )
 );
