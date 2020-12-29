@@ -10,8 +10,9 @@ passport.use(
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
     },
-    () => {
+    (accessToken, refreshToken, profile, done) => {
       // passport callback fn
+      console.log();
     }
   )
 );
